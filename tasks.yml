@@ -1,0 +1,86 @@
+- hosts: all
+  pre_tasks:
+    - name: Ensure python2 is installed
+      become: true
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python)
+
+    - name: Ensure aptitude is installed
+      become: true
+      raw: apt install -y aptitude
+
+  tasks:
+    - name: Install the NTP package
+      become: true
+      apt: name=ntp update_cache=yes
+
+    - name: Make sure NTP is running
+      service: name=ntp state=started
+
+    - name: Upgrade all packages
+      tags: ['upgrade-all']
+      become: true
+      apt: upgrade=dist update_cache=yes
+
+    - name: Reboot machine
+      tags: ['upgrade-all']
+      become: true
+      shell: shutdown -r +1 Upgrading kernel
+      ignore_errors: true
+      async: 0
+      poll: 0
+
+    - name: Wait for machine to come back
+      tags: ['upgrade-all']
+      local_action: wait_for host={{ ansible_ssh_host }} state=started
+
+    - name: Ensure unattended upgrades are turned on
+      become: true
+      apt: name=unattended-upgrades update_cache=yes
+
+    - name: Enable auto update package lists
+      become: true
+      lineinfile: dest=/etc/apt/apt.conf.d/10periodic regexp=^APT::Periodic::Update-Package-Lists line="APT::Periodic::Update-Package-Lists "1";"
+
+    - name: Enable auto download upgradable packages
+      become: true
+      lineinfile: dest=/etc/apt/apt.conf.d/10periodic regexp=^APT::Periodic::Download-Upgradeable-Packages line="APT::Periodic::Download-Upgradeable-Packages "1";"
+
+    - name: Enable auto clean packages
+      become: true
+      lineinfile: dest=/etc/apt/apt.conf.d/10periodic regexp=^APT::Periodic::AutocleanInterval line="APT::Periodic::AutocleanInterval "7";"
+
+    - name: Enable auto unattended upgrades
+      become: true
+      lineinfile: dest=/etc/apt/apt.conf.d/10periodic regexp=^APT::Periodic::Unattended-Upgrade line="APT::Periodic::Unattended-Upgrade "1";"
+
+    - name: Get kernel version
+      tags: ['kernelinfo']
+      command: uname -a
+      register: uname_output
+
+    - name: Print out kernel version
+      tags: ['kernelinfo']
+      debug: msg="{{ uname_output.stdout }}"
+
+    - name: Install the binutils package
+      tags: ['meltdown']
+      become: true
+      apt: name=binutils update_cache=yes
+
+    - name: Get Meltdown Spectre checker script
+      tags: ['meltdown']
+      git:
+        repo: https://github.com/speed47/spectre-meltdown-checker.git
+        dest: /tmp/spectre-meltdown-checker
+
+    - name: Run Meltdown Spectre checker
+      tags: ['meltdown']
+      become: true
+      shell: /tmp/spectre-meltdown-checker/spectre-meltdown-checker.sh --batch json
+      ignore_errors: true
+      register: spectre_meltdown_check_output
+
+    - name: Print Meltdown Spectre checker output
+      tags: ['meltdown']
+      debug: msg="{{ spectre_meltdown_check_output.stdout }}"
+
