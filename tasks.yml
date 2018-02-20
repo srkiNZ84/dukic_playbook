@@ -86,15 +86,23 @@
 
     - name: Ensure SSH settings are in config file
       tags: ['ssh-audit','ssh']
-      debug: msg=TODO
+      become: true
+      blockinfile:
+        path: /etc/ssh/sshd_config
+        block: |
+          KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+          HostKeyAlgorithms ssh-rsa,rsa-sha2-512,rsa-sha2-256,ssh-ed25519
+          MACs umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
 
     - name: Verify settings are not going to break SSHd
       tags: ['ssh-audit','ssh']
-      debug: msg=TODO
+      become: true
+      command: sshd -t
 
     - name: Restart SSHd
       tags: ['ssh-audit','ssh']
-      debug: msg=TODO
+      become: true
+      systemd: name=sshd state=restarted
 
     - name: Download ssh-audit script
       tags: ['ssh-audit','ssh']
