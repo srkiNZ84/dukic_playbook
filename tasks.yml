@@ -84,3 +84,23 @@
       tags: ['meltdown']
       debug: msg="{{ spectre_meltdown_check_output.stdout }}"
 
+    - name: Ensure SSH settings are in config file
+      tags: ['ssh-audit','ssh']
+      debug: msg=TODO
+
+    - name: Verify settings are not going to break SSHd
+      tags: ['ssh-audit','ssh']
+      debug: msg=TODO
+
+    - name: Restart SSHd
+      tags: ['ssh-audit','ssh']
+      debug: msg=TODO
+
+    - name: Download ssh-audit script
+      tags: ['ssh-audit','ssh']
+      debug: msg=TODO
+
+    - name: Run the ssh-audit against the server
+      tags: ['ssh-audit','ssh']
+      debug: msg=TODO
+
