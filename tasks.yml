@@ -102,5 +102,11 @@
 
     - name: Run the ssh-audit against the server
       tags: ['ssh-audit','ssh']
-      debug: msg=TODO
+      connection: local
+      shell: "./ssh-audit.py -n -b -l warn {{ ansible_ssh_host }}"
+      register: sshauditoutput
+
+    - name: Output the ssh-audit results
+      tags: ['ssh-audit','ssh']
+      debug: msg="{{ sshauditoutput.stdout_lines }}"
 
