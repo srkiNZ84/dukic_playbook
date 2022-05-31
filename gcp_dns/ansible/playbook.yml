@@ -1,3 +1,8 @@
+# NOTE: This playbook is meant to be run on the machine to be configured with the ansible-pull command like:
+#   ansible-pull -C add-gcp-free-tier-dns-server -U https://github.com/srkiNZ84/dukic_playbook.git gcp_dns/ansible/playbook.yml
+# where:
+#   ansible-pull -C [BRANCH_NAME] -U [GIT_URL]
+
 - hosts: all
   tasks:
     - name: get info on an instance
