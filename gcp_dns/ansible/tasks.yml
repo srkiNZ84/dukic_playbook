@@ -59,13 +59,7 @@
           boot: 'true'
           source: "{{ disk }}"
         metadata:
-          #startup-script-url: gs:://graphite-playground/bootstrap.sh
-          startup-script: |
-              #! /bin/bash
-              apt update
-              apt -y install apache2
-              cat <<EOF > /var/www/html/index.html
-              <html><body><p>Linux startup script added directly.</p></body></html>
+          startup-script: "{{ lookup('file',  'files/bootstrap.sh') }}" 
         labels:
           serverrole: dns
         network_interfaces:
