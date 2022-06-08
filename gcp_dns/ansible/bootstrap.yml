@@ -50,6 +50,18 @@
       register: address
       ignore_errors: true
 
+    - name: create a firewall
+      gcp_compute_firewall:
+        name: dns-allow-ssh
+        allowed:
+        - ip_protocol: tcp
+          ports:
+          - '22'
+        project: dns-server-22102021
+        auth_kind: serviceaccount
+        service_account_file: "/tmp/sa-key.json"
+        state: "{{ envstate | default('present') }}"
+
     - name: create a instance
       gcp_compute_instance:
         name: dns-server-1 
