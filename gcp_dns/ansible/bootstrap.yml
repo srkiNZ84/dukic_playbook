@@ -57,6 +57,8 @@
         - ip_protocol: tcp
           ports:
           - '22'
+        network:
+          selfLink: "global/networks/dns-network-instance"
         project: dns-server-22102021
         auth_kind: serviceaccount
         service_account_file: "/tmp/sa-key.json"
