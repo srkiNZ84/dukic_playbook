@@ -18,11 +18,6 @@
     line: "include \"/etc/bind/named.conf.public-zones\";"
     insertafter: "EOF"
 
-- name: Reload the configuration
-  service:
-    name: bind9
-    state: restarted
-
 - name: Register new DNS server with something
   debug: msg="TODO Register somewhere so that the primary can add this machine to the allow list of replicas"
 
@@ -52,6 +47,11 @@
     insertafter: "EOF"
     backup: yes
     validate: "named-checkconf %s"
+
+- name: Reload the configuration
+  service:
+    name: bind9
+    state: restarted
 
 - name: Ensure that metrics are being collected
   debug: 
