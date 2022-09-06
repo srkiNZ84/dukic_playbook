@@ -1,5 +1,5 @@
 zone "dukic.co.nz" {
 	type slave;
 	file "/var/cache/bind/db.dukic.co.nz";
-	masters { 52.2.105.141; 10.0.0.143; };
+	masters { 52.2.105.141; };
 };

@@ -13,8 +13,9 @@
     mode: '0644'
 
 - name: Reload the configuration
-  debug:
-    msg: "TODO"
+  service:
+    name: bind9
+    state: restarted
 
 - name: Health check that the server is listening
   debug:
