@@ -8,3 +8,7 @@
     - name: get info on an instance
       connection: local
       debug: msg="Hello"
+
+- hosts: dns
+  roles:
+    - { role: "bind", tags: ["bind", "dns"] }

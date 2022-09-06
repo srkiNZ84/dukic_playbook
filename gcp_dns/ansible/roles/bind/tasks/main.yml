@@ -1,0 +1,26 @@
+- name: Ensure Bind server is installed
+  apt:
+    name: bind9
+    update_cache: yes
+    state: latest
+
+- name: Ensure that the DNS configuration is in place
+  debug:
+    msg: "TODO"
+
+- name: Reload the configuration
+  debug:
+    msg: "TODO"
+
+- name: Health check that the server is listening
+  debug:
+    msg: "TODO"
+
+- name: Ensure that the metrics are being collected
+  debug:
+    msg: "TODO"
+
+- name: Ensure that the logs are being collected
+  debug:
+    msg: "TODO"
+
