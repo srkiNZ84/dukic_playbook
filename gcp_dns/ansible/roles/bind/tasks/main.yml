@@ -5,8 +5,12 @@
     state: latest
 
 - name: Ensure that the DNS configuration is in place
-  debug:
-    msg: "TODO"
+  copy:
+    src: "files/dns-replica"
+    dest: "/etc/bind/named.conf.public-zones"
+    owner: root
+    group: bind
+    mode: '0644'
 
 - name: Reload the configuration
   debug:
