@@ -23,9 +23,24 @@
     name: bind9
     state: restarted
 
-- name: Health check that the server is listening
-  debug:
-    msg: "TODO"
+- name: Register new DNS server with something
+  debug: msg="TODO Register somewhere so that the primary can add this machine to the allow list of replicas"
+
+- name: Check if port 53 is listening
+  wait_for:
+    port: 53
+    delay: 5
+    timeout: 10
+    msg: "Timeout waiting for 80 to respond"
+  register: port_check
+  ignore_errors: yes
+
+- name: Try to restart bind9 if not started
+  service:
+    name: bind9
+    state: started
+    enabled: yes
+  when: port_check.failed == true
 
 - name: Ensure that the metrics are being collected
   debug:
