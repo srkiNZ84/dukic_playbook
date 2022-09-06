@@ -51,7 +51,7 @@
       };
     insertafter: "EOF"
     backup: yes
-    validate: "named-checkconf /etc/bind/named.conf"
+    validate: "named-checkconf %s"
 
 - name: Ensure that metrics are being collected
   debug: 
