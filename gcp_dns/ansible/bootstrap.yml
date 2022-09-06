@@ -74,6 +74,7 @@
           source: "{{ disk }}"
         metadata:
           startup-script: "{{ lookup('file',  'files/bootstrap.sh') }}" 
+          ssh-keys: "{{ lookup('file', 'files/gcp_auth_keys') }}"
         labels:
           serverrole: dns
         network_interfaces:
