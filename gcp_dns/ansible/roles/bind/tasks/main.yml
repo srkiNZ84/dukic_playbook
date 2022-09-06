@@ -4,13 +4,19 @@
     update_cache: yes
     state: latest
 
-- name: Ensure that the DNS configuration is in place
+- name: Ensure that the DNS public zone configuration is in place
   copy:
     src: "files/dns-replica"
     dest: "/etc/bind/named.conf.public-zones"
     owner: root
     group: bind
     mode: '0644'
+
+- name: Ensure that we load the public zone config
+  lineinfile:
+    path: "/etc/bind/named.conf"
+    line: "include \"/etc/bind/named.conf.public-zones\";"
+    insertafter: "EOF"
 
 - name: Reload the configuration
   service:
