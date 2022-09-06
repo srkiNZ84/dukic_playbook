@@ -42,8 +42,19 @@
     enabled: yes
   when: port_check.failed == true
 
-- name: Ensure that the metrics are being collected
-  debug:
+- name: Ensure that the metrics are being exposed
+  blockinfile:
+    path: "/etc/bind/named.conf.options"
+    block: |
+      statistics-channels {
+        inet 127.0.0.1 port 8053;
+      };
+    insertafter: "EOF"
+    backup: yes
+    validate: "named-checkconf /etc/bind/named.conf"
+
+- name: Ensure that metrics are being collected
+  debug: 
     msg: "TODO"
 
 - name: Ensure that the logs are being collected
