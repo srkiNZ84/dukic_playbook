@@ -57,6 +57,10 @@
         - ip_protocol: tcp
           ports:
           - '22'
+          - '53'
+        - ip_protocol: udp
+          ports:
+          - '53'
         network:
           selfLink: "global/networks/dns-network-instance"
         project: dns-server-22102021

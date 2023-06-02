@@ -1,0 +1,34 @@
+somevalue: ENC[AES256_GCM,data:RTnj,iv:qEMIREY8XqjqCmkBU4ONnfsW9g5HaJ+KLOB9BzGYsvM=,tag:sw7EqqNRl6ZrytvWOKpeSA==,type:str]
+othervalue: ENC[AES256_GCM,data:s03s,iv:eC4B4MqQ7KsylOmhc1EPzWMNsFazbX07WTAbcn5YnxQ=,tag:kLj8Rag1EO269hVY4LBS5w==,type:str]
+bar:
+    - ENC[AES256_GCM,data:9mSXsN8vBLsyWg==,iv:EII5A6AnGrhBu8Wa/qmF7BUOTh7blbB94fLsq9V/WCk=,tag:VUuBtscDV6Dzp7ul9jRbJA==,type:str]
+    - ENC[AES256_GCM,data:zuK2tbHzDA0rRw==,iv:S0y8AVj/0V0oigrXZoL5tyuQbz6cGz/r8MZmhszJUDo=,tag:r6fRVl+vitbCBifWfCEGMg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2022-04-15T10:49:38Z"
+    mac: ENC[AES256_GCM,data:gKKiXVz1mdbGVsnsZvtYuV1+Y81JziEdR508sIe5BqSbVmLhxEyIhqwEzkMoA9VjeY3QRlNhp4ym1eMxBmo258XH7jgXCGJlkSfUCFiQd/+5AT51nC8BLYcWeo8VC+8uXQMU/w3G5ShZqPNBOhTITlCae1vZc5jKHCpNF07u0po=,iv:gEsuIcRYnzD/eyt675uQxyDmjN2p3ifOYc/VIH04HDA=,tag:fzZb3MivtQCJ3rkdl+AUVw==,type:str]
+    pgp:
+        - created_at: "2022-04-15T10:47:32Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMA0shooEWXP6MAQwAglEE2E78yTje/iyPYA0WzvGjT05Qszzepdlq4mwt+AJ8
+            ClvqumuAN9PVeMGabMV5z0dT7eq5oqdP4LlultkHBQ6ESQrW9bycMfSnBwWFibpO
+            sg2xZmUUNCztUBXJh5V7Ab6n9YFzD5fO9Q7sSHiYKNVhN/vhM5YQRSr2s8Q10+1K
+            bwcRzmc8xdUYXKVXasSLnSaLTUVFVzEB9rHrVXxP+F7VAMir2D/pUver73FF68an
+            IY35t0+JD4+4FMMNJUT7Rs1H6zTQ5DG09DPjN30cBtv4PofVPcU+dogSD1Jw/WnS
+            FpEaSM/PON5FylyS9TauTWQ8cEcnkj/B/jAOPqK50olJjcQRP4sEMg1+aaSMvG4h
+            YdTyOXafvI2RCxkQLq1wDA+wYGjmQPHIWSJDTDOjoV4cvnfB8fW0cqYH6OB4GghJ
+            ghFmSP0j1HL9lrD3hVXb1EwI1AzE2R3Ma2NRgkMh1ZOyKrb0qc6+fHGyUbQUoCU7
+            vtXuKgjw4r5D5MVbAf2Q0l4BWnRg3XREXg/uDM16zate4Mld6kvBkNRugNMRnQVW
+            1P3tidCf/YpUGnCOE81kbycL2AH5WOzKHtqPp8OKWy3/ZGJ4WR7v1wjbm5zdFYgu
+            K+Ezgcrr83OyzOIqeMZ7
+            =oxJB
+            -----END PGP MESSAGE-----
+          fp: 4FB93FC1490FB2B1BE673A0A9B7899537CB76769
+    unencrypted_suffix: _unencrypted
+    version: 3.7.2

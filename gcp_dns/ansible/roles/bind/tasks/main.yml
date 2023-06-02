@@ -5,8 +5,8 @@
     state: latest
 
 - name: Ensure that the DNS public zone configuration is in place
-  copy:
-    src: "files/dns-replica"
+  template:
+    src: "dns-replica.j2"
     dest: "/etc/bind/named.conf.public-zones"
     owner: root
     group: bind
